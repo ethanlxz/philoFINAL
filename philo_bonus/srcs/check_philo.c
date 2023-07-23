@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 22:57:20 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/23 23:00:10 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:06:10 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	philo_dead(t_philo *p)
 {
 	sem_wait(p->s_quota);
 	sem_wait(p->s_eat);
-	if (lmeal_interv(p) >= p->info->die_time)
+	if (p->info-> min_eat != 0 && lmeal_interv(p) >= p->info->die_time)
 	{
 		sem_post(p->s_eat);
 		sem_wait(p->s_print);

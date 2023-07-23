@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:49:23 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/23 22:55:11 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:08:05 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static	void	*philo_brain(t_philo *p)
 	{
 		philo_eat(p);
 		sem_wait(p->s_quota);
-		if (p->info->met_quota >= p->info->min_eat)
+		if (p->info->min_eat != 0 && p->info->met_quota >= p->info->min_eat)
 		{
 			break ;
 		}
