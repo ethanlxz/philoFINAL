@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 22:57:20 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/23 18:46:01 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/24 22:29:12 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 int	philo_meal(t_philo *p)
 {
 	pthread_mutex_lock(p->m_eat);
+	pthread_mutex_lock(p->m_quota);
 	if (p->info-> min_eat != 0 && p->info->met_quota >= p->info->philos)
 	{
+		pthread_mutex_unlock(p->m_quota);
 		pthread_mutex_unlock(p->m_eat);
 		pthread_mutex_lock(p->m_end);
 		p->info->state = END;
 		pthread_mutex_unlock(p->m_end);
 		return (1);
 	}
+	pthread_mutex_unlock(p->m_quota);
 	pthread_mutex_unlock(p->m_eat);
 	return (0);
 }
