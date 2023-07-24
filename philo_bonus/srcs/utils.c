@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:24:43 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/24 22:18:44 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/24 22:22:50 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	kill_philo_pid(t_info *info)
 	waitpid(-1, &status, 0);
 	while (++i < info->philos)
 	{
-		if (WIFEXITED(status) == 1)
+		if (WEXITSTATUS(status) == 1)
 			kill(info->philo_pid[i], SIGINT);
 		waitpid(info->philo_pid[i], NULL, 0);
 	}
