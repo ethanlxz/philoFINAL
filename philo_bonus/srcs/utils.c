@@ -6,7 +6,7 @@
 /*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:24:43 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/23 22:59:08 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/24 22:18:44 by etlaw            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,14 @@ void	ft_usleep(int time, int num)
 void	kill_philo_pid(t_info *info)
 {
 	int	i;
+	int	status;
 
-	waitpid(-1, NULL, 0);
 	i = -1;
+	waitpid(-1, &status, 0);
 	while (++i < info->philos)
 	{
-		if (kill(info->philo_pid[i], SIGINT) != -1)
-			waitpid(info->philo_pid[i], NULL, 0);
+		if (WIFEXITED(status) == 1)
+			kill(info->philo_pid[i], SIGINT);
+		waitpid(info->philo_pid[i], NULL, 0);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etlaw <ethanlxz@gmail.com>                 +#+  +:+       +#+        */
+/*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:26:20 by etlaw             #+#    #+#             */
-/*   Updated: 2023/07/23 22:17:50 by etlaw            ###   ########.fr       */
+/*   Updated: 2023/07/24 03:50:25 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int	init_val(int ac, char **av, t_info *info)
 	if (ac == 6)
 		info->min_eat = ft_atoi(av[5]);
 	else
-		info->min_eat = 0;
+		info->min_eat = -1;
 	info->met_quota = 0;
 	info->start_time = pl_time();
 	if (info->philos <= 0 || info->die_time <= 0
 		|| info->eat_time <= 0 || info->sleep_time <= 0
-		|| (ac == 6 && info->min_eat <= 0))
+		|| (ac == 6 && info->min_eat <= -1))
 		return (0);
 	return (1);
 }
